@@ -1,0 +1,6 @@
+#connect to SQL DB
+echo -e "select  1 from dual; \nexit" | sqlplus "$(OracleDatabaseUser)/$(OracleDatabasePassword)@$(OracleDatabaseServer):$(OraclePort)/$(OracleDatabaseName)";
+if %ERRORLEVEL% equ 0 (
+  echo "ERROR - Failed to connect to DB, check DB connection details and pwd.";
+  exit 1;
+)
