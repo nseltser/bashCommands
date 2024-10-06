@@ -4,3 +4,8 @@ if %ERRORLEVEL% equ 0 (
   echo "ERROR - Failed to connect to DB, check DB connection details and pwd.";
   exit 1;
 )
+
+Sorting 
+	
+
+#sort
