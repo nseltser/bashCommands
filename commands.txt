@@ -5,7 +5,14 @@ if %ERRORLEVEL% equ 0 (
   exit 1;
 )
 
-Sorting 
-	
+#Sorting 
+sort
 
-#sort
+# When pvc stucks in status "terminating"
+#oc login
+#oc project <namespace>
+#oc get pvc
+
+#kubectl patch pvc {PVC_NAME} -p '{"metadata":{"finalizers":null}}'
+
+https://veducate.co.uk/kubernetes-pvc-terminating/
