@@ -138,7 +138,8 @@ fi
 #example how to connect to sftp with user1 and public key:
 sftp -o StrictHostKeyChecking=no -P <port_num> -i /tmp/pubkey.pub user1@<IP>
 
-
+#
+ssh -i <path_to_public_key> user1@<IP> -p <port_num>
 
 
 
