@@ -135,6 +135,9 @@ if [[ -z $port_num ]]; then
  echo failed to extract port num
 fi
 
+#example how to connect to sftp with user1 and public key:
+sftp -o StrictHostKeyChecking=no -P <port_num> -i /tmp/pubkey.pub user1@<IP>
+
 
 
 
