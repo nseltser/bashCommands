@@ -8,10 +8,19 @@ if %ERRORLEVEL% equ 0 (
 # dfSorting something
 sort
 
+# Replace " to none
+#Replace , to none
+#Replace space to none
+
+sed -r 's/\"//g' | sed -r 's/,//g' | sed -r 's/ //g' 
+
+
+
 # When pvc stucks in status "terminating"
 #oc login
 #oc project <namespace>
 #oc get pvc
+
 
 #kubectl patch pvc {PVC_NAME} -p '{"metadata":{"finalizers":null}}'
 
