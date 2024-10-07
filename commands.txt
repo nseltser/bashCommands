@@ -4,12 +4,30 @@ if %ERRORLEVEL% equ 0 (
   echo "ERROR - Failed to connect to DB, check DB connection details and pwd.";
   exit 1;
 )
+#replace pwd for ***
+cat /config.txt | sed -r 's/password=[[:alnum:]]*/password=****/g'
+#Do not print lines where we have word 'credentialsPassword' or 'shieldKeyStorePass'
+cat /some.properties | grep -vi 'credentialsPassword\|shieldKeyStorePass'
 
-# dfSorting something
+
+# Sorting something
 sort
+# Sort in reverse order
+#sort -r
+
 
 #debugging
+#!/bin/sh
+#/usr/bin/bash
+#/bin/bash
+#!/usr/bin/env bash
+#!/bin/bash
 set +x
+#To throw stderr and stout to the file
+#./running_script.sh params  > runing.txt 2>&1
+#Send output to log
+command 2>&1 | tee runlog.txt
+
 
 # Replace " to none
 #Replace , to none
@@ -28,3 +46,96 @@ sed -r 's/\"//g' | sed -r 's/,//g' | sed -r 's/ //g'
 #kubectl patch pvc {PVC_NAME} -p '{"metadata":{"finalizers":null}}'
 
 https://veducate.co.uk/kubernetes-pvc-terminating/
+
+#go over json map
+echo '{"jopa":"kaka1", "popa": "kaka2"}' |jq -r 'to_entries[] | "\(.key) \(.value )"' | while read x y ; do echo x=$x y=$y; done
+x=jopa y=kaka1
+x=popa y=kaka2
+foo="$(echo '{"jopa":"kaka1", "popa": "kaka2"}' |jq -r 'to_entries[] | "\(.key) \(.value )"')"    
+while read x y ; do echo x=$x y=$y; done <<< "$foo"
+x=jopa y=kaka1
+x=popa y=kaka2
+while read x y ; do if [[ x == "popa" ]] ; then echo x=$x y=$y; fi; done <<< "$foo"
+while read x y ; do if [[ $x == "popa" ]] ; then echo x=$x y=$y; fi; done <<< "$foo"
+x=popa y=kaka2
+#LOOP
+cp /scripts/* /folder
+files=('/folder/script1.txt' '/folder/script2.txt' )
+for file in "${files[@]}"; do
+  sed -i "s|DB_USER|${DB_USER}|g" "$file"
+done
+
+### Value in parameter
+var1="this is the real value"
+a="var1"
+echo "${!a}" # outputs 'this is the real value'
+
+### WITH COLORS
+#!/bin/bash -x
+helmNamespace=$1
+PURPLE="\033[0;35m" #Purple color
+BYELLOW="\033[1;33m" # Bold yellow
+NOCOLOR='\033[0m' # No Color
+
+echo -e "${PURPLE}==========================================================================="
+echo -e "${BYELLOW}Describe namespace ${helmNamespace}"
+echo -e "${PURPLE}==========================================================================="
+
+# UPPER
+testname=$(echo "TTT-DDD-VVV" | sed -r 's/-//g' | tr '[:lower:]' '[:upper:]') 
+
+
+#AND Or in IF
+if [[ eq(parameters.HelmCheckouttoggle, 'download') && "${{ parameters.helmBuildVersion }}" != "latest" ]]; then
+      helm_version=$(echo ${{ parameters.helmBuildVersion }} | tr '.' '-' | tr '_' '-' | tr '[:upper:]' '[:lower:]')
+else
+  #looking for latest helm by branch and gpp version
+  helm_version=$branch_and_gpp_version
+fi
+
+# COLUMN - take specific value
+Suppose you have a file that looks like this
+John Smith 31
+Robert Jones 27
+...
+This file has 3 columns separated by spaces. To select only the first column, do the following.
+cut -d ' ' -f1 filename
+Here the -d flag, specifies the delimiter, or what separates the records. The -f flag specifies the field or column number. This will display the following output
+
+#To take from end 1 line
+tail -n 1
+
+# Replace one char to another
+# Replace . To -
+# Replace _ to -
+$tr '.' '-' | tr '_' '-'
+
+#Take 4th by dilimeter "
+cut -d '"' -f4
+
+####
+#Replace " to none
+#Replace , to none
+#Replace space to none
+sed -r 's/\"//g' | sed -r 's/,//g' | sed -r 's/ //g' 
+
+#Take last word
+cat file.txt | awk '/port/{print $NF }'
+cat file.txt | awk '/port/{print $1 }'
+
+#not exist
+cat file.txt grep "not exist")"
+echo $status
+if [[ $status =~ "not exist" ]]; then
+  echo "Test not exist"
+else
+cat file.txt | awk '/port/{print $NF }')"
+echo port is $port_num
+if [[ -z $port_num ]]; then
+ echo failed to extract port num
+fi
+
+
+
+
+
