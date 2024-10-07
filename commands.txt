@@ -8,6 +8,9 @@ if %ERRORLEVEL% equ 0 (
 # dfSorting something
 sort
 
+#debugging
+set +x
+
 # Replace " to none
 #Replace , to none
 #Replace space to none
