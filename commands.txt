@@ -1,3 +1,8 @@
+#to find file
+find /* | grep filename.xml
+# find text in files
+grep -rni "prepare" *
+
 #connect to SQL DB
 echo -e "select  1 from dual; \nexit" | sqlplus "$(OracleDatabaseUser)/$(OracleDatabasePassword)@$(OracleDatabaseServer):$(OraclePort)/$(OracleDatabaseName)";
 if %ERRORLEVEL% equ 0 (
