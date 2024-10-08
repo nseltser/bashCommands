@@ -4,6 +4,9 @@ if %ERRORLEVEL% equ 0 (
   echo "ERROR - Failed to connect to DB, check DB connection details and pwd.";
   exit 1;
 )
+echo "exit" | sqlplus -L dbUser/dbPasw@IP:port/DB_service | grep "Connected" > /dev/null
+
+
 #replace pwd for ***
 cat /config.txt | sed -r 's/password=[[:alnum:]]*/password=****/g'
 #Do not print lines where we have word 'credentialsPassword' or 'shieldKeyStorePass'
