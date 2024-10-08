@@ -152,6 +152,19 @@ sftp -o StrictHostKeyChecking=no -P <port_num> -i /tmp/pubkey.pub user1@<IP>
 
 #
 ssh -i <path_to_public_key> user1@<IP> -p <port_num>
+#ansible
+#==========
+ansible-playbook -i inventory -k -K -b replace.yml
+#To run without change
+ansible-playbook -i inventory -k -K -b link.yml --check
+#To print all params
+ansible -i inventory all -m setup -k -K
+#https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html
+#check for bad syntax
+ansible-playbook playbooks/play_bookname.yml --syntax-check
+https://ansible-tips-and-tricks.readthedocs.io/en/latest/ansible/commands/
+
+
 
 
 
