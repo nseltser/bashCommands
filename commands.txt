@@ -1,3 +1,4 @@
+
 #to find file
 find /* | grep filename.xml
 # find text in files
@@ -10,6 +11,9 @@ if %ERRORLEVEL% equ 0 (
   exit 1;
 )
 echo "exit" | sqlplus -L dbUser/dbPasw@IP:port/DB_service | grep "Connected" > /dev/null
+
+# check if last command succeed - 0 - success
+echo $? 
 
 
 #replace pwd for ***
